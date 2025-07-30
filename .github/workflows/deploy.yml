@@ -1,0 +1,28 @@
+name: CI/CD Deploy ToDo App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+
+    - name: Run Deployment with Ansible
+      run: |
+        sudo apt update
+        sudo apt install -y ansible
+        ansible-playbook -i ansible/inventory.ini ansible/install-docker.yml
+
