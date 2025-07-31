@@ -1,3 +1,174 @@
+## Devops
+=======================================================================================================
+ DevOps CI/CD Pipeline Project: Todo List App
+
+This project demonstrates a complete DevOps CI/CD pipeline setup for a Node.js-based Todo List application using:
+
+📌 Project Overview
+The Todo List App allows users to create, update, and delete tasks. The application is:
+
+Developed using the MERN stack
+
+Containerized using Docker
+
+Deployed and automated with Ansible
+
+Integrated into a CI/CD pipeline using GitHub Actions for seamless delivery
+
+---
+
+## 🧩 Project Structure
+Todo-List-nodejs/
+│── playbook.yml
+│── inventory.ini
+├── screenshots/
+├── .github/
+│ └── workflows/
+│ └── docker-push.yml
+├ └── deploy.yml
+├── Dockerfile
+├── docker-compose.yml
+├── install-docker.yml
+├── README.md
+└── ...
+
+## Part 1: Dockerizing the Application
+🔧 What Was Done
+Created a Dockerfile to define the Node.js environment.
+
+Set up a docker-compose.yml to run both the Node.js app and MongoDB container.
+
+Connected frontend and backend using environment variables.
+
+Ensured ports were properly mapped (4000 for app, 27017 for MongoDB).
+
+
+🗂️ Files Created
+
+      Dockerfile
+
+     docker-compose.yml
+
+     .dockerignore
+
+✅ Commands Used 
+
+ docker build -t todo-app .
+ docker-compose up
+
+screenshots:
+![push_iamge_at_Dockerhub](/home/muazfarrag/Todo-List-nodejs/screenshots/part1 - dockerhub.png)
+![todoapp1](/home/muazfarrag/Todo-List-nodejs/screenshots/part1- todo-app.png)
+![todoapp2](/home/muazfarrag/Todo-List-nodejs/screenshots/part1-todo-app.png)
+![running app in terminal](/home/muazfarrag/Todo-List-nodejs/screenshots/part1-running.png)
+![database mongodb](/home/muazfarrag/Todo-List-nodejs/screenshots/part1-database.png)
+
+
+
+
+
+## 🚀 Part 2: Ansible for Remote Docker Deployment
+📦 Goal
+Automate Docker installation and deployment on a remote Ubuntu VM (tayara).
+
+🧰 What Was Done
+Created install-docker.yml playbook to:
+
+Install Docker
+
+Install Docker Compose
+
+Set up inventory.ini to define the remote host
+
+🛠️ Steps
+SSH into remote VM manually to test access.
+
+Configure passwordless sudo and SSH with public/private key.
+
+Run playbook from main machine .
+
+✅ Commands Used 
+ 
+ ansible-playbook -i inventory.ini install-docker.yml
+
+screenshots:
+![Docker Running on Remote](screenshots/part2-Docker Running on Remote.png)
+![SSH Access from main -->vm ](screenshots/part2-ssh-connection.png)
+![ YAML playbook ](screenshots/part2-playbock.png)
+
+ 
+
+
+
+## 🔁 Part 3: CI/CD with GitHub Actions
+🎯 Objective
+Set up a GitHub Actions pipeline to automate testing and deployment to the remote server.
+
+🔐 SSH Key Setup
+Created SSH keypair using: ssh-keygen -t rsa -b 4096 -f gha_key
+
+
+Copied public key to remote VM:
+  'ssh-copy-id -i gha_key.pub moaaz@192.168.73.131 '
+
+Saved gha_key and gha_key.pub in root of repo (excluded in .gitignore).
+
+screenshots:
+
+![GitHub Actions Workflow (deploy.yml) ](screenshots/part3-github action.png)
+![ GHA SSH Key](sscreenshots/part3-public_private_key.png)
+![ App Running from GitHub Deploy ](screenshots/part3.png)
+![ ](screenshots/part3-.png)
+
+
+## 📄 Workflow File
+Created .github/workflows/deploy.yml with steps:
+
+Checkout repo
+
+Set up Node.js
+
+SSH into remote VM
+
+Pull latest code
+
+Rebuild and restart Docker containers
+
+
+## 🧪 Test
+Pushed to GitHub to trigger the workflow.
+
+Visited http://192.168.73.131:4000 to confirm deployment success.
+
+
+
+## 💻 How to Run Locally :
+  
+    git clone https://github.com/moaaz-abdelkarim/Todo-List-nodejs.git
+    cd Todo-List-nodejs
+    docker-compose up
+   Access the app at http://localhost:4000
+
+## 👤 Author
+ Moaaz Farrag
+ GitHub: @moaaz-abdelkarim   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Documentation
 
@@ -106,4 +277,15 @@ React, Java, Javascript, HTML, CSS, Nodejs, ExpressJs, Mongodb, Mongoose...
 ## Feedback
 
 If you have any feedback, please reach out to us at ankitvis609@gmail.com
+
+
+
+
+
+
+
+
+
+
+
 
