@@ -57,11 +57,11 @@ Ensured ports were properly mapped (4000 for app, 27017 for MongoDB).
  docker-compose up
 
 screenshots:
-![push_iamge_at_Dockerhub](/home/muazfarrag/Todo-List-nodejs/screenshots/part1 - dockerhub.png)
-![todoapp1](/home/muazfarrag/Todo-List-nodejs/screenshots/part1- todo-app.png)
-![todoapp2](/home/muazfarrag/Todo-List-nodejs/screenshots/part1-todo-app.png)
-![running app in terminal](/home/muazfarrag/Todo-List-nodejs/screenshots/part1-running.png)
-![database mongodb](/home/muazfarrag/Todo-List-nodejs/screenshots/part1-database.png)
+![push_iamge_at_Dockerhub](screenshots/part1 - dockerhub.png)
+![todoapp1](screenshots/part1- todo-app.png)
+![todoapp2](screenshots/part1-todo-app.png)
+![running app in terminal](screenshots/part1-running.png)
+![database mongodb](screenshots/part1-database.png)
 
 
 
@@ -92,7 +92,8 @@ Run playbook from main machine .
  ansible-playbook -i inventory.ini install-docker.yml
 
 screenshots:
-![Docker Running on Remote](screenshots/part2-Docker Running on Remote.png)
+
+![Docker_Running_on_Remote](screenshots/part2-Docker Running on Remote.png)
 ![SSH Access from main -->vm ](screenshots/part2-ssh-connection.png)
 ![ YAML playbook ](screenshots/part2-playbock.png)
 

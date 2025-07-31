@@ -7,6 +7,8 @@ gha_key
 gha_key.pub
 
 # Ignore Ansible inventory if it contains passwords or IPs
-inventory.ini
+.inventory.ini
+
+
 
 .env
